@@ -1,0 +1,4 @@
+name: nofallll
+version: '${project.version}'
+main: org.akitiltka.nofallll.Nofallll
+api-version: '1.16'
