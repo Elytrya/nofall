@@ -14,7 +14,6 @@ public final class Nofallll extends JavaPlugin implements Listener {
 
     @Override
     public void onEnable() {
-        // Регистрируем обработчик событий
         getServer().getPluginManager().registerEvents(this, this);
     }
 
@@ -31,17 +30,13 @@ public final class Nofallll extends JavaPlugin implements Listener {
 
         final Player player = (Player) event.getEntity();
 
-        // Проверяем, является ли причина урона падением
         if (event.getCause() == DamageCause.VOID) {
-            // Получаем местоположение спавна игрока
             final Location spawnLocation = player.getWorld().getSpawnLocation();
             final World world = spawnLocation.getWorld();
 
-            // Телепортируем игрока на 5 блоков выше спавна
             spawnLocation.add(0, 5, 0);
             player.teleport(spawnLocation);
 
-            // Устанавливаем плавное падение на 5 секунд
             new BukkitRunnable() {
                 private int ticks = 0;
 
@@ -56,10 +51,8 @@ public final class Nofallll extends JavaPlugin implements Listener {
                 }
             }.runTaskTimer(this, 1L, 1L);
 
-            // Отменяем событие урона
             event.setCancelled(true);
 
-            // Отправляем сообщение игроку
             player.sendMessage("Вы спасены от падения!");
         }
     }
